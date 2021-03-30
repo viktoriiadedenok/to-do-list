@@ -8,15 +8,14 @@ const Posts = ({ syncPost }) => {
     return <p className="text-center mt-2">No posts are here yet.</p>
   }
   return (
-    <table className="table table-bordered">
-      <tbody>
-        {syncPost.map(post => <tr>
-          {/* <th scope="row">1</th> */}
-          <td><Post post={post} key={post.id} /></td>
-          {/* <td></td> */}
-        </tr>)}
-      </tbody>
-    </table>)
+    // <table className="table table-striped">
+    <ul className="list-group mt-10">
+      {syncPost.map(post =>
+        <li className="d-flex justify-content-between list-group-item inline"><Post post={post} key={post.id} />
+          <button className="delate-item-btn">Delate</button></li>)}
+    </ul>
+    // </table>
+  )
 };
 
 const mapStateToProps = state => {

@@ -4,7 +4,7 @@ import Posts from "./Posts";
 
 const ToDoList = () => {
     return (
-        <div className="m-t-100">
+        <div className="m-t-80">
             <span className="login100-form-title p-b-51">My check list</span>
             <PostForm />
             <Posts />

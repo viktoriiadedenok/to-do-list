@@ -8,13 +8,13 @@ import ToDoList from './components/toDoList/ToDoList';
 function App() {
   return (
     <Router>
-      {/* <nav className="navbar-expand-lg">
+      <nav className="navbar-expand-lg">
         <ul className="navbar-nav">
-          <li className="nav-item active m-1"><Link to="/log_in" key="">Log in</Link></li>
-          <li className="nav-item active m-1"><Link to="/registration" key="">Registration</Link></li>
-          <li className="nav-item active m-1"><Link to="/to_do_list" key="">My list</Link></li>
+          <li className="nav-item active m-1"><Link to="log_in" key="">Log in</Link></li>
+          <li className="nav-item active m-1"><Link to="registration" key="">Registration</Link></li>
+          <li className="nav-item active m-1"><Link to="to_do_list" key="">My list</Link></li>
         </ul>
-      </nav> */}
+      </nav>
       <Switch>
         <Route exact path="/" component={LogIn}></Route>
         <Route path="/log_in" component={LogIn}></Route>

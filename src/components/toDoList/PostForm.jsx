@@ -28,7 +28,7 @@ const PostForm = (props) => {
     <div >
       <div className="d-flex justify-content-center">
         <form className="" onSubmit={submitHandler}>
-          <div className="wrap-input100 validate-input m-b-16"
+          <div className="wrap-input100 validate-input m-b-10"
           >
             <label htmlFor="title"></label>
             <input
