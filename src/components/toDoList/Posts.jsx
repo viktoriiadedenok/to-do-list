@@ -8,13 +8,27 @@ const Posts = ({ syncPost }) => {
     return <p className="text-center mt-2">No posts are here yet.</p>
   }
   return (
-    // <table className="table table-striped">
-    <ul className="list-group mt-10">
+    <ul className="">
       {syncPost.map(post =>
-        <li className="d-flex justify-content-between list-group-item inline"><Post post={post} key={post.id} />
-          <button className="delate-item-btn">Delate</button></li>)}
+        <li className="list-item">
+          <div className="checkbox">
+            <input
+              // className="form-check"
+              type="checkbox" value="" id="defaultCheck1" />
+            <label
+              // className="form-check-label" 
+              for="defaultCheck1">
+            </label>
+          </div>
+
+          <div  > <Post post={post} key={post.id} /></div>
+
+          <div className="button-edit"> <button className="small-item-btn"><li className="fas fa-edit"></li></button></div>
+
+          <div className="button-delate"> <button className="small-item-btn"><li className="fas fa-trash-alt"></li></button></div>
+        </li>
+      )}
     </ul>
-    // </table>
   )
 };
 

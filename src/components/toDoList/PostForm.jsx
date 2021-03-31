@@ -26,11 +26,12 @@ const PostForm = (props) => {
 
   return (
     <div >
-      <div className="d-flex justify-content-center">
-        <form className="" onSubmit={submitHandler}>
-          <div className="wrap-input100 validate-input m-b-10"
+      <form
+        className="d-flex justify-content-between m-b-15"
+        onSubmit={submitHandler}>
+        <div className="input-form">
+          <div className="wrap-input100 validate-input "
           >
-            <label htmlFor="title"></label>
             <input
               placeholder="Write down something"
               className="input100"
@@ -41,11 +42,13 @@ const PostForm = (props) => {
               onChange={changeInput}
             />
           </div>
-          <div className="text-center"><button type="submit"
-            className="login100-form-btn mb-2"
-          >Add to list</button>  </div>
-        </form>
-      </div>
+          <div className="">
+            <button type="submit"
+              className="login100-form-btn"
+            ><li className="fas fa-plus-square"></li></button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

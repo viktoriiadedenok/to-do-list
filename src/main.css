@@ -15,7 +15,6 @@
 }
 
 body, html {
-
 	height: 100%;
 	font-family: Ubuntu-Regular, sans-serif;
 }
@@ -88,6 +87,39 @@ label {
 }
 
 /*---------------------------------------------*/
+/* custome styles */
+.input-form{
+  display: inline-flex;
+  height: 62px;
+  width:100%;
+
+}
+.list-item{
+  display: flex;
+  max-width: 100%;
+}
+.checkbox{
+  /* margin: auto 0; */
+
+}
+
+.button-edit {
+  max-width: 60px;
+  margin-left: auto;
+}
+/* .button-delate{
+  margin-left: 5px;
+} */
+.post{
+  padding:5px;
+  /* background-color: #827ffe; */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  hyphens: auto;
+}
+
+
 button {
 	outline: none !important;
 	border: none;
@@ -170,7 +202,6 @@ iframe {
   color: #403866;
   line-height: 1.2;
   font-size: 18px;
-
   display: block;
   width: 100%;
   background: transparent;
@@ -290,7 +321,6 @@ iframe {
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -303,7 +333,6 @@ iframe {
   height: 62px;
   background-color: #827ffe;
   border-radius: 3px;
-
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -312,13 +341,12 @@ iframe {
  
 
 /* custom button */
-.delate-item-btn{
+.small-item-btn{
   font-family: Ubuntu-Bold;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -326,16 +354,18 @@ iframe {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-  width: 120px;
-  height: 42px;
+  width: 52px;
+  height: 32px;
   background-color: #827ffe;
   border-radius: 3px;
-
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+}
+
+.small-item-btn:hover {
+  background-color: #403866;
 }
 
 .login100-form-btn:hover {
