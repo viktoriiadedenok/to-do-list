@@ -1,1 +1,3 @@
-export const CREATE_POST = "POST/CREATE_POST";
+export const CREATE_ITEM = "ITEM/CREATE_ITEM";
+export const REMOVE_ITEM = "ITEM/REMOVE_ITEM";
+export const UPDATE_ITEM = "ITEM/UPDATE_ITEM";

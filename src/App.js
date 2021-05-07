@@ -22,8 +22,8 @@ function App() {
           <Route path="/registration" component={Registration}></Route>
           <Route path="/to_do_list" component={ToDoList}></Route>
         </Switch>
-      </Router>
-    </div>
+      </Router >
+    </div >
   );
 }
 

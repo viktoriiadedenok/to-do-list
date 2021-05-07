@@ -1,9 +1,24 @@
-import { CREATE_POST } from "./types";
+import { CREATE_ITEM, REMOVE_ITEM, UPDATE_ITEM } from "./types";
 
-const createPost = (post) => {
+export const createItem = (item) => {
   return {
-    type: CREATE_POST,
-    payload: post,
-  };
+    type: CREATE_ITEM,
+    payload: item
+  }
 };
-export default createPost;
+
+export const deleteItem = (itemId) => {
+  return {
+    type: REMOVE_ITEM,
+    payload: itemId
+  }
+};
+
+export const updateItem = (item) => {
+  return {
+    type: UPDATE_ITEM,
+    payload: item
+  }
+};
+
+
