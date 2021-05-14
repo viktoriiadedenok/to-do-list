@@ -1,53 +1,42 @@
-import React from "react";
+import { React, useState } from "react";
 import { connect } from "react-redux";
+import { useFirestore } from "react-redux-firebase";
 import { createItem, deleteItem, updateItem } from "../../redux/actions";
-import { ToDolDataService } from '../../data.service'
-
-const tds = new ToDolDataService();
+// import { ToDolDataService } from '../../data.service'
+// const tds = new ToDolDataService();
 
 const ListForm = (props) => {
-  let state = { title: '' };
+  const [presentToDo, setPresentToDo] = useState({ title: " " });
+  const firestore = useFirestore();
+  // tds.getAll().onSnapshot(function (snapshot) {
+  //   snapshot.docChanges().forEach(function (change) {
+  //     const newItem = {
+  //       title: change.doc.data().title,
+  //       id: change.doc.id
+  //     }
+  //     if (change.type === "added") {
+  //       props.createItem(newItem); //dispatch
+  //       console.log("New item: ", change.doc.data());
+  //     }
+  //     if (change.type === "modified") {
+  //       props.updateItem({ title: change.doc.data().title, id: change.doc.id });
+  //     }
+  //     if (change.type === "removed") {
+  //       console.log("Removed item: ", change.doc.id);
+  //       props.deleteItem({ id: change.doc.id }); //dispatch
+  //     }
+  //   });
+  // });
 
-  tds.getAll().onSnapshot(function (snapshot) {
-    snapshot.docChanges().forEach(function (change) {
-      const newItem = {
-        title: change.doc.data().title,
-        id: change.doc.id
-      }
-      if (change.type === "added") {
-        props.createItem(newItem); //dispatch
-        console.log("New item: ", change.doc.data());
-      }
-      if (change.type === "modified") {
-        props.updateItem({ title: change.doc.data().title, id: change.doc.id });
-      }
-      if (change.type === "removed") {
-        console.log("Removed item: ", change.doc.id);
-        props.deleteItem({ id: change.doc.id }); //dispatch
-      }
-    });
-  });
 
   const submitHandler = event => {
     event.preventDefault()
-    const { title } = state;
-    if (!title.trim()) {
-      return
-    }
-
-    tds.create({ title })
-      .then(() => {
-        console.log("Created new item successfully!");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    firestore.collection("tutorials").add(presentToDo)
     event.target.reset();
-    state = { title: "" };
   }
 
   const setItem = event => {
-    state = { title: event.target.value };
+    setPresentToDo({ title: event.target.value });
   }
 
   return (
@@ -63,7 +52,7 @@ const ListForm = (props) => {
               className="input100"
               type="text"
               id="title"
-              title={state.title}
+              title={presentToDo.title}
               name="title"
               onChange={setItem}
             />

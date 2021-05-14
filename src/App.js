@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import LogIn from './components/auth/LogIn';
 import Registration from './components/auth/Registration';
 import ToDoList from './components/toDoList/ToDoList';
+import Todos from './components/toDoList/sampleFirebase';
 
 
 function App() {
   return (
     <div className="app">
+      <Todos></Todos>
       <Router>
         <nav className="navbar-expand-lg">
           <ul className="navbar-nav">

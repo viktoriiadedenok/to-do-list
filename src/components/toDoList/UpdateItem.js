@@ -1,7 +1,7 @@
 import React from "react";
-import { ToDolDataService } from '../../data.service'
+// import { ToDolDataService } from '../../data.service'
 
-const tds = new ToDolDataService();
+// const tds = new ToDolDataService();
 
 const Popup = props => {
     let changedItemTitle = props.item.title;
@@ -17,13 +17,13 @@ const Popup = props => {
     }
 
     const updateItem = (id, value) => {
-        tds.update(id, value)
-            .then(() => {
-                console.log("Updated item successfully!");
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        // tds.update(id, value)
+        //     .then(() => {
+        //         console.log("Updated item successfully!");
+        //     })
+        //     .catch((e) => {
+        //         console.log(e);
+        //     });
     }
 
     const changeInput = (event) => {

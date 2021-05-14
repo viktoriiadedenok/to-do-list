@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ListItem from "./ListItem";
 import { connect } from "react-redux";
-import { ToDolDataService } from '../../data.service'
+// import { ToDolDataService } from '../../data.service'
 import Popup from "./UpdateItem";
 
-const tds = new ToDolDataService();
+// const tds = new ToDolDataService();
 
 const ListsItems = ({ syncPost }) => {
 
@@ -21,13 +21,13 @@ const ListsItems = ({ syncPost }) => {
   }
 
   const deleteItem = (id) => {
-    tds.delete(id)
-      .then(() => {
-        console.log("Deleted item successfully!");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    // tds.delete(id)
+    //   .then(() => {
+    //     console.log("Deleted item successfully!");
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   }
 
   if (!syncPost.length) {

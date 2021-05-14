@@ -1,21 +1,21 @@
-import firebase from "./firebase";
+// import firebase from "./firebase";
 
-const db = firebase.collection("tutorials");
+// const db = firebase.collection("tutorials");
 
-export class ToDolDataService {
-    getAll() {
-        return db;
-    }
+// export class ToDolDataService {
+//     getAll() {
+//         return db;
+//     }
 
-    create(tutorial) {
-        return db.add(tutorial);
-    }
+//     create(tutorial) {
+//         return db.add(tutorial);
+//     }
 
-    update(id, value) {
-        return db.doc(id).update(value);
-    }
+//     update(id, value) {
+//         return db.doc(id).update(value);
+//     }
 
-    delete(id) {
-        return db.doc(id).delete();
-    }
-}
+//     delete(id) {
+//         return db.doc(id).delete();
+//     }
+// }
