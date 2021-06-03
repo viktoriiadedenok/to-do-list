@@ -9,6 +9,7 @@ export const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_ITEM:
       const newItems = [...state.items, action.payload]
+      console.log("hi")
       return { ...state, items: newItems };
 
     case REMOVE_ITEM:

@@ -2,18 +2,28 @@ import React from "react"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { render } from "react-dom"
-import { createStore } from "redux"
+import { createStore, compose } from "redux"
 import { Provider } from "react-redux"
 import { rootReducer } from "./redux/rootReducer"
 import firebase from "firebase/app";
 import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/database'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
 import "./main.css";
 import "./util.css";
+import { useSelector } from 'react-redux'
+import { isLoaded } from 'react-redux-firebase'
+import { BrowserRouter } from "react-router-dom";
 
+function AuthIsLoaded({ children }) {
+  const auth = useSelector(state => state.firebase.auth)
+  if (!isLoaded(auth)) return <div>splash screen...</div>;
+  return children
+}
 
 var firebaseConfig = {
   apiKey: "AIzaSyApQDke81ww4c6xFM7fT9Se4NOrDFM937I",
@@ -30,13 +40,15 @@ firebase.firestore();
 
 const rrfConfig = {
   userProfile: "tutorials",
-  useFirestoreForProfile: true
+  useFirestoreForProfile: true,
+  // presence: 'presence', // where list of online users is stored in database
+  // sessions: 'sessions' // where list of user sessions is stored in database (presence must be enabled)
 }
 const initialState = {}
-const store = createStore(rootReducer, initialState
-  // compose(
-  //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  // )
+const store = createStore(rootReducer, initialState,
+  compose(
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
 const rrfProps = {
@@ -50,7 +62,11 @@ const rrfProps = {
 render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
+      <BrowserRouter>
+        <AuthIsLoaded>
+          <App />
+        </AuthIsLoaded>
+      </BrowserRouter>
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById("root")

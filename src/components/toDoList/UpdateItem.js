@@ -1,33 +1,41 @@
-import React from "react";
-// import { ToDolDataService } from '../../data.service'
-
-// const tds = new ToDolDataService();
+import React, { useState } from "react";
+import { useSelector } from 'react-redux'
+import { useFirestore } from 'react-redux-firebase'
+import { isLoaded, useFirestoreConnect } from 'react-redux-firebase'
 
 const Popup = props => {
+
+    const [updatedItem, setUpdatedItem] = useState({})
     let changedItemTitle = props.item.title;
     const id = props.item.id;
 
     const submitHandler = event => {
         event.preventDefault()
-        if (!changedItemTitle.trim()) {
-            return
-        }
-        updateItem(id, { title: changedItemTitle });
+        updateItem(id, updatedItem);
         props.handleClose();
     }
 
-    const updateItem = (id, value) => {
-        // tds.update(id, value)
-        //     .then(() => {
-        //         console.log("Updated item successfully!");
-        //     })
-        //     .catch((e) => {
-        //         console.log(e);
-        //     });
+    useFirestoreConnect([
+        'tutorials'
+    ])
+
+    const todos = useSelector(state => {
+        return state.firestore.ordered['tutorials']
+    });
+
+    const firestore = useFirestore();
+
+    const updateItem = (id, updatedItem) => {
+        firestore.update(`tutorials/${id}`, updatedItem)
     }
 
     const changeInput = (event) => {
         changedItemTitle = event.target.value;
+        setUpdatedItem({ title: changedItemTitle })
+    }
+
+    if (!isLoaded(todos)) {
+        return 'Loading'
     }
 
     return (

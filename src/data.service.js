@@ -19,3 +19,23 @@
 //         return db.doc(id).delete();
 //     }
 // }
+
+  // tds.getAll().onSnapshot(function (snapshot) {
+  //   snapshot.docChanges().forEach(function (change) {
+  //     const newItem = {
+  //       title: change.doc.data().title,
+  //       id: change.doc.id
+  //     }
+  //     if (change.type === "added") {
+  //       props.createItem(newItem); //dispatch
+  //       console.log("New item: ", change.doc.data());
+  //     }
+  //     if (change.type === "modified") {
+  //       props.updateItem({ title: change.doc.data().title, id: change.doc.id });
+  //     }
+  //     if (change.type === "removed") {
+  //       console.log("Removed item: ", change.doc.id);
+  //       props.deleteItem({ id: change.doc.id }); //dispatch
+  //     }
+  //   });
+  // });
