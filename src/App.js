@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import LogIn from './components/auth/LogIn';
 import Registration from './components/auth/Registration';
 import ToDoList from './components/toDoList/ToDoList';
-import PrivateRoute from './components/auth/PrivatRoute';
-import SignIn from './components/auth/LogInPage';
+import PrivateRoute from './components/auth/PrivateRoute';
+
 
 function App() {
   return (
@@ -24,9 +24,6 @@ function App() {
           <PrivateRoute path="/to_do_list">
             <ToDoList />
           </PrivateRoute>
-          <Route path="/sig_in_with_google">
-            <SignIn />
-          </Route>
         </Switch>
       </Router >
     </div >

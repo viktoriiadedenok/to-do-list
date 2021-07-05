@@ -1,7 +1,24 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useFirebase } from "react-redux-firebase";
+import { useHistory } from "react-router-dom";
 
 const LogIn = () => {
+    const firebase = useFirebase();
+    const history = useHistory();
+
+    const signInWithGoogle = () => {
+        firebase
+            .login({
+                provider: "google",
+                type: "popup",
+            })
+            .then(() => {
+                // history.push("/todos");
+                history.push("/to_do_list");
+            });
+    };
+
     return (
         <div>
             <div className="limiter"></div>
@@ -23,9 +40,9 @@ const LogIn = () => {
                             <div className="txt1">
                                 <Link to="/registration">
                                     <strong>Registration</strong>
-                                </Link><br></br>
-                                <Link to="/sig_in_with_google">
-                                    <strong>Sign In with Google</strong>
+                                </Link><br />
+                                <Link >
+                                    <button className="btn-link" onClick={signInWithGoogle}> Sign In with Google</button>
                                 </Link>
                             </div>
                         </div>

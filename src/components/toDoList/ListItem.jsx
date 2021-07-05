@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFirestore } from "react-redux-firebase";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect } from 'react-redux-firebase'
 
 
 const ListItem = ({ isDone, title, id }) => {
-    const [isTodoItemDone, setTodoItemDone] = useState(isDone);
     const firestore = useFirestore();
     const { uid } = useSelector(state => state.firebase.auth);
 
@@ -13,19 +12,26 @@ const ListItem = ({ isDone, title, id }) => {
         collection: `users2-${uid}`,
     })
 
+    // useEffect(() => {
+    //     setTodoItemDone(isDone);
+    // }, [isDone])
+
     const handleChange = (event) => {
         if (event.currentTarget.type === "checkbox") {
-            setTodoItemDone(!isTodoItemDone);
-            firestore.update(`users2-${uid}/${id}`, { isDone: !isTodoItemDone })
+            updateIsDone()
         }
     };
+
+    const updateIsDone = () => {
+        firestore.update(`users2-${uid}/${id}`, { isDone: !isDone })
+    }
 
     return (
         <div className="post text-muted">
             <strong>
                 <div style={{
-                    textDecoration: isTodoItemDone && "line-through",
-                    opacity: isTodoItemDone ? 0.5 : 1,
+                    textDecoration: isDone && "line-through",
+                    opacity: isDone ? 0.5 : 1,
                 }}>
                     <input
                         className="m-2"
@@ -33,7 +39,7 @@ const ListItem = ({ isDone, title, id }) => {
                         name=""
                         id=""
                         onChange={handleChange}
-                        checked={isTodoItemDone}
+                        checked={isDone}
                     />
                     {title}
                 </div>

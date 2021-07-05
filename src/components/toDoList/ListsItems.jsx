@@ -17,6 +17,7 @@ const ListsItems = () => {
   })
 
   const todos = useSelector(state => {
+
     return state.firestore.ordered[`users2-${uid}`]
   });
 
@@ -39,6 +40,11 @@ const ListsItems = () => {
         {todos &&
           Object.values(todos).map(item =>
             <li className="list-item line" key={item.id}>
+              <span>
+
+                {item.isDone.toString()}
+
+              </span>
               <ListItem
                 title={item.title}
                 isDone={item.isDone}
