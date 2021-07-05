@@ -1,36 +1,29 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux'
 import { useFirestore } from 'react-redux-firebase'
-import { isLoaded, useFirestoreConnect } from 'react-redux-firebase'
 
 const ItemForm = () => {
-  const [presentToDo, setPresentToDo] = useState({ title: "" });
+  const [presentToDo, setPresentToDo] = useState("");
   const { uid } = useSelector((state) => state.firebase.auth);
+
   const firestore = useFirestore();
-
-  const todos = useSelector(state => {
-    return state.firestore.ordered["tutorials"]
-  });
-
-  useFirestoreConnect([
-    'tutorials'
-  ])
 
   const submitHandler = event => {
     event.preventDefault()
-    if (presentToDo.title) { // check here
-      firestore.add(`tutorials`, presentToDo)
+    if (presentToDo) { // check here
+      firestore
+        .collection(`users2-${uid}`)
+        .add({
+          title: presentToDo,
+          isDone: false,
+        })
     }
     event.target.reset();
-    setPresentToDo({ title: '' }) // and here
+    setPresentToDo("") // and here
   }
 
   const setItem = event => {
-    setPresentToDo({ title: event.target.value });
-  }
-
-  if (!isLoaded(todos)) {
-    return 'Loading'
+    setPresentToDo(event.target.value);
   }
 
   return (
@@ -46,7 +39,7 @@ const ItemForm = () => {
               className="input100"
               type="text"
               id="title"
-              title={presentToDo.title}
+              title={presentToDo}
               name="title"
               onChange={setItem}
             />

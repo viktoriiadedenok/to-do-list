@@ -6,8 +6,19 @@ import { isLoaded, useFirestoreConnect } from 'react-redux-firebase'
 const Popup = props => {
 
     const [updatedItem, setUpdatedItem] = useState({})
+    const { uid } = useSelector((state) => state.firebase.auth);
     let changedItemTitle = props.item.title;
     const id = props.item.id;
+    const firestore = useFirestore();
+
+
+    useFirestoreConnect({
+        collection: `users2-${uid}`,
+    })
+
+    const todos = useSelector(state => {
+        return state.firestore.ordered[`users2-${uid}`]
+    });
 
     const submitHandler = event => {
         event.preventDefault()
@@ -15,18 +26,8 @@ const Popup = props => {
         props.handleClose();
     }
 
-    useFirestoreConnect([
-        'tutorials'
-    ])
-
-    const todos = useSelector(state => {
-        return state.firestore.ordered['tutorials']
-    });
-
-    const firestore = useFirestore();
-
     const updateItem = (id, updatedItem) => {
-        firestore.update(`tutorials/${id}`, updatedItem)
+        firestore.update(`users2-${uid}/${id}`, updatedItem)
     }
 
     const changeInput = (event) => {

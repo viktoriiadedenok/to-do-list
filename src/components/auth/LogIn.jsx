@@ -23,6 +23,9 @@ const LogIn = () => {
                             <div className="txt1">
                                 <Link to="/registration">
                                     <strong>Registration</strong>
+                                </Link><br></br>
+                                <Link to="/sig_in_with_google">
+                                    <strong>Sign In with Google</strong>
                                 </Link>
                             </div>
                         </div>
