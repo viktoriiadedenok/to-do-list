@@ -40,11 +40,6 @@ const ListsItems = () => {
         {todos &&
           Object.values(todos).map(item =>
             <li className="list-item line" key={item.id}>
-              <span>
-
-                {item.isDone.toString()}
-
-              </span>
               <ListItem
                 title={item.title}
                 isDone={item.isDone}

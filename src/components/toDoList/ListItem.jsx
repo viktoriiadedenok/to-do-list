@@ -18,13 +18,9 @@ const ListItem = ({ isDone, title, id }) => {
 
     const handleChange = (event) => {
         if (event.currentTarget.type === "checkbox") {
-            updateIsDone()
+            firestore.update(`users2-${uid}/${id}`, { isDone: !isDone })
         }
     };
-
-    const updateIsDone = () => {
-        firestore.update(`users2-${uid}/${id}`, { isDone: !isDone })
-    }
 
     return (
         <div className="post text-muted">

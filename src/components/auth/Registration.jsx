@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useFirebase } from "react-redux-firebase";
+// import { useSelector } from "react-redux";
 
 const Registration = () => {
+    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const firebase = useFirebase();
+    // const { uid } = useSelector((state) => state.firebase.auth);
+
+    const createUserName = (event) => {
+        event.preventDefault();
+        setUserName(event.target.value)
+
+    }
+
+    const createEmail = (event) => {
+        event.preventDefault();
+        setEmail(event.target.value)
+    }
+
+    const createPass = (event) => {
+        event.preventDefault();
+        setPassword(event.target.value)
+    }
+
+    const createNewUser = ({ email, password, username }) => {
+        console.log(email, password, username)
+        firebase.createUser(
+            { email, password },
+            { username, email }
+        )
+    }
+
     return (
         <div>
             <div className="limiter"></div>
@@ -10,28 +42,50 @@ const Registration = () => {
                     <form className="login100-form validate-form flex-sb flex-w">
                         <span className="login100-form-title p-b-51">
                             Registration
-					</span>
+					   </span>
+                        <div className="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                            <input className="input100"
+                                type="email"
+                                name="email"
+                                placeholder="E-mail"
+                                title={email}
+                                onChange={createEmail} />
+                            <span className="focus-input100"></span>
+                        </div>
+                        <div className="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                            <input className="input100"
+                                type="password"
+                                name="pass"
+                                placeholder="Password"
+                                title={password}
+                                onChange={createPass} />
+                            <span className="focus-input100"></span>
+                        </div>
                         <div className="wrap-input100 validate-input m-b-16" data-validate="Username is required">
-                            <input className="input100" type="text" name="username" placeholder="Username" />
-                            <span className="focus-input100"></span>
-                        </div>
-                        <div className="wrap-input100 validate-input m-b-16" data-validate="Password is required">
-                            <input className="input100" type="password" name="pass" placeholder="Password" />
-                            <span className="focus-input100"></span>
-                        </div>
-                        <div className="wrap-input100 validate-input m-b-16" data-validate="Password is required">
-                            <input className="input100" type="password" name="pass" placeholder="Repeat password" />
+                            <input className="input100"
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                                title={userName}
+                                onChange={createUserName} />
                             <span className="focus-input100"></span>
                         </div>
                         <div className="flex-sb-m w-full p-t-3 p-b-24">
                             <div className="txt1">
-                                <Link to="/log_in" >
+                                <Link className="btn-link" to="/log_in" >
                                     <strong>Already registrated</strong>
                                 </Link>
                             </div>
                         </div>
                         <div className="container-login100-form-btn m-t-17">
-                            <button className="login100-form-btn">
+                            <button className="login100-form-btn" onClick={(event) => {
+                                event.preventDefault();
+                                createNewUser({
+                                    email: email,
+                                    password: password,
+                                    username: userName
+                                })
+                            }}>
                                 Register
 						</button>
                         </div>

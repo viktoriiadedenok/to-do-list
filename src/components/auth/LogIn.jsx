@@ -2,10 +2,16 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useFirebase } from "react-redux-firebase";
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 const LogIn = () => {
     const firebase = useFirebase();
     const history = useHistory();
+    // const { uid } = useSelector((state) => state.firebase.auth);
+
+    // const sighInWithEmailAndPassword = (email, password) => {
+    //     firebase.auth().signInWithEmailAndPassword(email, password)
+    // }
 
     const signInWithGoogle = () => {
         firebase
@@ -46,6 +52,7 @@ const LogIn = () => {
                                 </Link>
                             </div>
                         </div>
+
                         <div className="container-login100-form-btn m-t-17">
                             <button className="login100-form-btn">
                                 Login
