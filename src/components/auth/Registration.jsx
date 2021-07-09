@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useFirebase } from "react-redux-firebase";
+import { useHistory } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 const Registration = () => {
@@ -8,12 +9,12 @@ const Registration = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const firebase = useFirebase();
+    const history = useHistory();
     // const { uid } = useSelector((state) => state.firebase.auth);
 
     const createUserName = (event) => {
         event.preventDefault();
         setUserName(event.target.value)
-
     }
 
     const createEmail = (event) => {
@@ -26,12 +27,12 @@ const Registration = () => {
         setPassword(event.target.value)
     }
 
-    const createNewUser = ({ email, password, username }) => {
-        console.log(email, password, username)
-        firebase.createUser(
-            { email, password },
-            { username, email }
-        )
+    const createNewUser = (email, password) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then((u) => {
+            history.push("/to_do_list");
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
@@ -80,11 +81,7 @@ const Registration = () => {
                         <div className="container-login100-form-btn m-t-17">
                             <button className="login100-form-btn" onClick={(event) => {
                                 event.preventDefault();
-                                createNewUser({
-                                    email: email,
-                                    password: password,
-                                    username: userName
-                                })
+                                createNewUser(email, password)
                             }}>
                                 Register
 						</button>
